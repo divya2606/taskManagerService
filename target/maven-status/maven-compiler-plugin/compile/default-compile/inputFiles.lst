@@ -1,0 +1,14 @@
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\config\AppConfig.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\config\SecurityWebApplicationInitialzer.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\dao\TaskManagerDAO.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\dao\TaskManagerDAOImpl.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\exception\TaskException.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\service\TaskManagerServiceImpl.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\controller\TaskManagerController.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\service\TaskManagerService.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\controller\ExceptionControllerAdvice.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\model\TaskManager.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\config\MyWebAppInitializer.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\controller\TaskManagerMvcController.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\config\WebConfig.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\model\ErrorResponse.java
