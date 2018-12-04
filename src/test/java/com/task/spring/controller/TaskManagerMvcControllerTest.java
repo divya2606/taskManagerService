@@ -54,7 +54,7 @@ public class TaskManagerMvcControllerTest {
 	public void testListSize() {
 		List<TaskManager> list=taskManagerServiceTest.list();
 		System.out.println("list size =" + list.size());
-		assertEquals(1, list.size());
+		assertEquals(2, list.size());
 	}
 	
 	@Test
