@@ -24,9 +24,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.task.spring.config.AppConfig;
-import com.task.spring.config.WebConfig;
 import com.task.spring.model.TaskManager;
 import com.task.spring.service.TaskManagerService;
+
+
+
 
 class TaskManagerController1{
 	
@@ -57,7 +59,7 @@ public class TaskManagerMvcControllerTest {
 	
 	@Test
 	public void testData() {
-		TaskManager tb =  taskManagerServiceTest.get(34);
+		TaskManager tb =  taskManagerServiceTest.get(43);
 		assertEquals("Task1", tb.getTask());
 	}
 	
