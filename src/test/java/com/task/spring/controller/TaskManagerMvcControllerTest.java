@@ -69,6 +69,10 @@ public class TaskManagerMvcControllerTest {
 		assertNull(tb);
 	}
 	
-	
+	@Test
+	public void testData1() {
+		TaskManager tb =  taskManagerServiceTest.get(44);
+		assertEquals("Parent Task4", tb.getParentId());
+	}
 		
 }
