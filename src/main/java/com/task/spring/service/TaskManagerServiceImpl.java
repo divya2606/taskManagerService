@@ -1,5 +1,6 @@
 package com.task.spring.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.task.spring.dao.TaskManagerDAO;
+import com.task.spring.model.ParentTask;
+import com.task.spring.model.Project;
+import com.task.spring.model.Task;
 import com.task.spring.model.TaskManager;
+import com.task.spring.model.User;
 
 @Service
 public class TaskManagerServiceImpl implements TaskManagerService {
@@ -131,5 +136,144 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 		List<TaskManager> li =taskManagerDAO.view(query);
 		return li;
 	}
+	
+	/*  Second Phase */
+	
+	
+
+	@Override
+	@Transactional
+	public long addProject(Project project) {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.addProject(project);
+	}
+	
+	@Override
+	@Transactional
+	public long addUser(User user) {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.addUser(user);
+	}
+	
+	@Override
+	@Transactional
+	public int addTask(Task task) {
+		// TODO Auto-generated method stub
+		if("true".equalsIgnoreCase(task.getPcheck())) {
+		ParentTask pt= new ParentTask();
+		pt.setPtask(task.getTname());
+		return taskManagerDAO.addParentTask(pt);
+		}else {
+			 int taskId= taskManagerDAO.addTask(task);
+			 task.setTaskId(taskId);
+			 int projectId=taskManagerDAO.getProjectIds(task);
+			 task.setProjectId(projectId);
+			 taskManagerDAO.updateUser(task.getEmpId(),task);
+			 return taskId;
+		}
+		
+	}
+	
+	@Override
+	@Transactional
+	public void updateTasks(int id, Task task) {
+		
+			 taskManagerDAO.updateUser(task.getEmpId(),task);
+			  taskManagerDAO.addTask(id,task);
+		}
+		
+	
+	
+	@Override
+	@Transactional
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getAllUsers();
+	}
+	
+	@Override
+	@Transactional
+	public void userDelete(int id) {
+		taskManagerDAO.userDelete(id);
+	}
+	
+	@Override
+	@Transactional
+	public void updateUser(int id, User user) {
+		taskManagerDAO.updateUserwithId(id, user);
+		
+	}
+	
+	@Override
+	@Transactional
+	public List<User> getAllUsers(int id) {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getAllUsers(id);
+	}
+	
+	@Override
+	@Transactional
+	public List<Project> getProjects() throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getProjects();
+	}
+	
+	@Override
+	@Transactional
+	public List<Project> getProjectsOrder(int id) throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getProjectsOrder(id);
+	}
+
+	@Override
+	@Transactional
+	public void updateProject(int id, Project project) {
+		taskManagerDAO.updateProjectwithId(id, project);
+		
+	}
+	
+
+	@Override
+	@Transactional
+	public void endTask(int id) {
+		taskManagerDAO.endTask(id);
+		
+	}
+	
+	@Override
+	@Transactional
+	public List<Task> getTasks() throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getTasks();
+	}
+	
+	@Override
+	@Transactional
+	public List<Task> getTasksOrder(int id) throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getTasksOrder(id);
+	}
+	
+	
+	@Override
+	@Transactional
+	public List<Project> getAllProjects() throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getAllProjects();
+	}
+	
+	@Override
+	@Transactional
+	public List<ParentTask> getAllParentProjects() throws ParseException {
+		// TODO Auto-generated method stub
+		return taskManagerDAO.getAllParentProjects();
+	}
+	
+	@Override
+	@Transactional
+	public void deleteTask(int id) {
+		taskManagerDAO.deleteTask(id);
+	}
+	
 	
 }

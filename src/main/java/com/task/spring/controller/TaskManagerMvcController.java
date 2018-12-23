@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.task.spring.model.Project;
 import com.task.spring.model.TaskManager;
 import com.task.spring.service.TaskManagerService;
 
@@ -125,4 +126,41 @@ public class TaskManagerMvcController {
 		return model;
 	}
 
+	/* 2nd Phase */
+	
+	@RequestMapping(value="addProject", method=RequestMethod.GET)
+	public ModelAndView addProject(HttpServletRequest request,Model model,
+			@RequestParam(value="project") String  project,
+			@RequestParam(value="priority") int priority,
+			@RequestParam(value="startDate") String startDate,
+			@RequestParam(value="endDate") String endDate) throws ParseException {
+		
+		SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date sdate=format1.parse(startDate);
+		Date edate=format1.parse(endDate);
+		Project addproject = new Project();
+		addproject.setEdate(edate);
+		addproject.setProject(project);
+		addproject.setPriority(priority);
+		addproject.setSdate(sdate);
+		
+		taskManagerService.addProject(addproject);
+		//request.setAttribute("currentTab", "view");
+		//taskManagerService.update(taskId,taskM);
+		//ModelAndView model1 = new ModelAndView("home");
+		//request.setAttribute("currentTab", "view");
+		//List<TaskManager> list= taskManagerService.view("", "", "", "", "", "");
+		//model1.addObject("list",list);
+		//model1.addObject("tasksForm", new TaskManager());
+		return new ModelAndView("redirect:/Tasks/add");
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public ModelAndView add(HttpServletRequest request) {
+		request.setAttribute("currentTab", "add");
+		ModelAndView model = new ModelAndView("home");
+	    model.addObject("addProjectForm", new Project()); // the Category object is used as a template to generate the form
+	    return model;
+	}
+	
 }

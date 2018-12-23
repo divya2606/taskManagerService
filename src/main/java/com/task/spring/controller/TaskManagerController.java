@@ -19,12 +19,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.task.spring.exception.TaskException;
 import com.task.spring.model.ErrorResponse;
+import com.task.spring.model.ParentTask;
+import com.task.spring.model.Project;
+import com.task.spring.model.Task;
 import com.task.spring.model.TaskManager;
+import com.task.spring.model.User;
 import com.task.spring.service.TaskManagerService;
 
 @CrossOrigin("*")
@@ -86,4 +91,136 @@ public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
 	error.setMessage(ex.getMessage());
 	return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
 	}
+
+@PostMapping("/api/addProject")
+
+public ResponseEntity<?> addProject(@RequestBody Project project){
+	int id = (int) taskManagerService.addProject(project);
+	return ResponseEntity.ok().body("Task Id" + id);
 }
+
+
+
+@PostMapping("/api/addUser")
+
+public ResponseEntity<?> addUser(@RequestBody User user){
+	int id = (int) taskManagerService.addUser(user);
+	return ResponseEntity.ok().body("User Id" + id);
+}
+
+@PostMapping("/api/addTask")
+
+public ResponseEntity<?> addTask(@RequestBody Task task){
+	int id = (int) taskManagerService.addTask(task);
+	return ResponseEntity.ok().body("Task Id" + id);
+}
+
+@PutMapping("/api/addTask/{id}")
+
+public ResponseEntity<?> updateTasks(@PathVariable("id") int id,@RequestBody Task task){
+	  taskManagerService.updateTasks(id, task);
+	return ResponseEntity.ok().body("Updated Task Id") ;
+}
+
+@PutMapping("/api/addProject/{id}")
+
+public ResponseEntity<?> updateProject(@PathVariable("id") int id,@RequestBody Project project){
+	  taskManagerService.updateProject(id, project);
+	return ResponseEntity.ok().body("Updated Task Id") ;
+}
+
+@GetMapping("/api/getAllUsers")
+public ResponseEntity<List<User>> getAllUsers() throws ParseException, TaskException{
+	List<User> list =  taskManagerService.getAllUsers();
+			return ResponseEntity.ok().body(list);
+		
+}
+
+
+@DeleteMapping("/api/user/{id}")
+	
+	public ResponseEntity<?> userDelete(@PathVariable("id") int id){
+	System.out.println("ID===" + id);
+		  taskManagerService.userDelete(id);
+		return ResponseEntity.ok().body("Deleted Task Id") ;
+	}
+
+@PutMapping("/api/user/{id}")
+
+public ResponseEntity<?> updateUser(@PathVariable("id") int id,@RequestBody User user){
+	  taskManagerService.updateUser(id, user);
+	return ResponseEntity.ok().body("Updated Task Id") ;
+}
+
+@GetMapping("/api/getAllUsers/{id}")
+public ResponseEntity<List<User>> getAllUsersOrder(@PathVariable("id") int id) throws ParseException, TaskException{
+	System.out.println("Order by "+ id);
+	List<User> list =  taskManagerService.getAllUsers(id);
+			return ResponseEntity.ok().body(list);
+		
+}
+
+
+@GetMapping("/api/getProjects")
+public ResponseEntity<List<Project>> getProjects() throws ParseException, TaskException{
+	List<Project> list =  taskManagerService.getProjects();
+			return ResponseEntity.ok().body(list);
+}
+
+@GetMapping("/api/getProjects/{id}")
+public ResponseEntity<List<Project>> getProjectsOrder(@PathVariable("id") int id) throws ParseException, TaskException{
+	System.out.println("Order by "+ id);
+	List<Project> list =  taskManagerService.getProjectsOrder(id);
+			return ResponseEntity.ok().body(list);
+		
+}
+
+
+
+@GetMapping("/api/getTasks")
+public ResponseEntity<List<Task>> getTasks() throws ParseException, TaskException{
+	List<Task> list =  taskManagerService.getTasks();
+			return ResponseEntity.ok().body(list);
+}
+
+@GetMapping("/api/getTasks/{id}")
+public ResponseEntity<List<Task>> getTaskOrder(@PathVariable("id") int id) throws ParseException, TaskException{
+	System.out.println("Order by "+ id);
+	List<Task> list =  taskManagerService.getTasksOrder(id);
+			return ResponseEntity.ok().body(list);
+		
+}
+
+@GetMapping("/api/getAllProjects")
+public ResponseEntity<List<Project>> getAllProjects() throws ParseException, TaskException{
+	List<Project> list =  taskManagerService.getAllProjects();
+			return ResponseEntity.ok().body(list);
+}
+
+
+
+@GetMapping("/api/getAllParentProjects")
+public ResponseEntity<List<ParentTask>> getAllParentProjects() throws ParseException, TaskException{
+	List<ParentTask> list =  taskManagerService.getAllParentProjects();
+			return ResponseEntity.ok().body(list);
+}
+
+@DeleteMapping("/api/deleteTask/{id}")
+
+public ResponseEntity<?> deleteTask(@PathVariable("id") int id){
+System.out.println("ID===" + id);
+	  taskManagerService.deleteTask(id);
+	return ResponseEntity.ok().body("Deleted Task Id") ;
+}
+
+
+@PutMapping("/api/endTask/{id}")
+
+public ResponseEntity<?> endTask(@PathVariable("id") int id){
+	  taskManagerService.endTask(id);
+	return ResponseEntity.ok().body("Updated Task Id") ;
+}
+
+
+}
+

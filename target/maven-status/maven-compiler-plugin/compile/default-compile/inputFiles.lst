@@ -3,6 +3,7 @@ C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\confi
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\dao\TaskManagerDAO.java
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\dao\TaskManagerDAOImpl.java
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\exception\TaskException.java
+C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\model\Project.java
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\service\TaskManagerServiceImpl.java
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\controller\TaskManagerController.java
 C:\Users\Admin\eclipse-workspace\taskmanager\src\main\java\com\task\spring\service\TaskManagerService.java
